@@ -36,12 +36,15 @@ public class MetodosYMenu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         mensaje = new javax.swing.JTextField();
         enviar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        imagenLike = new javax.swing.JTextField();
+        like = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Escribir mensaje aqui...");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 26, -1, 84));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, 50));
         getContentPane().add(mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 150, -1));
 
         enviar.setText("ENVIAR");
@@ -52,9 +55,23 @@ public class MetodosYMenu extends javax.swing.JFrame {
         });
         getContentPane().add(enviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
 
+        jLabel2.setText("URL de la imagen");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 120, -1));
+        getContentPane().add(imagenLike, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 150, -1));
+
+        like.setText("Dar Like");
+        like.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                likeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(like, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ /**
+  * Publica en el muro del usuario por defecto el mensaje que escribimos en el Text Field "mensaje"     
+     */
     private void enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarActionPerformed
                 ConfigurationBuilder cb = new ConfigurationBuilder();
 cb.setDebugEnabled(true)
@@ -70,6 +87,26 @@ FacebookFactory ff = new FacebookFactory(cb.build());
             Logger.getLogger(MetodosYMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_enviarActionPerformed
+        /**
+         * Este Método da un me gusta a la imagen de nuestro muro que hayamos pasado a través de text field "imagenLike"
+         * @param evt 
+         */
+    private void likeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_likeActionPerformed
+       ConfigurationBuilder cb = new ConfigurationBuilder();
+cb.setDebugEnabled(true)
+  .setOAuthAppId("1538426176461550")
+  .setOAuthAppSecret("ec2983593488cb1c245d11db2275b45d")
+  .setOAuthAccessToken("EAACEdEose0cBAKaehh8ZCD4HD4OUoYZAvL1YYsUTfNak7QDmw09uUQMVFp2ooMRZAhxM4nx5k0ynoKrdjwO40509JrcRidAzPBg7zGdJ2gZB8uJE1xRVXAcup79hd0uL33GUmKo2LFo8uKPVzkiJdFEGxOcPIzN4tJlOVbBQUgZDZD")
+  .setOAuthPermissions("email,publish_stream,...");
+FacebookFactory ff = new FacebookFactory(cb.build());
+        facebook4j.Facebook facebook = ff.getInstance();
+        try {
+            facebook.likePost(imagenLike.getText());
+            System.out.println("like");
+        } catch (FacebookException ex) {
+            Logger.getLogger(MetodosYMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_likeActionPerformed
 
     
     /**
@@ -109,7 +146,10 @@ FacebookFactory ff = new FacebookFactory(cb.build());
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton enviar;
+    private javax.swing.JTextField imagenLike;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton like;
     private javax.swing.JTextField mensaje;
     // End of variables declaration//GEN-END:variables
 }
