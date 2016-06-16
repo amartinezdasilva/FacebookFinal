@@ -8,8 +8,11 @@ package facebookfinal;
 import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
 import facebook4j.conf.ConfigurationBuilder;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -44,6 +47,11 @@ public class MetodosYMenu extends javax.swing.JFrame {
         comentarimagen = new javax.swing.JTextField();
         comentarioimagen = new javax.swing.JTextField();
         comentar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        subirimagen = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        comentariopublica = new javax.swing.JTextField();
+        publicar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,6 +95,22 @@ public class MetodosYMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(comentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 90, -1));
+
+        jLabel5.setText("Imagen");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 50, -1));
+        getContentPane().add(subirimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, 110, -1));
+
+        jLabel6.setText("Comentario");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 70, -1));
+        getContentPane().add(comentariopublica, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 100, -1));
+
+        publicar.setText("Publicar");
+        publicar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                publicarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(publicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 90, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -147,6 +171,27 @@ facebook4j.Facebook facebook = ff.getInstance();
             Logger.getLogger(MetodosYMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_comentarActionPerformed
+       /**
+        * Este metodo publica la imagen que quieras pasandole la direccion de esta y le añade un comentario si lo deseas
+        * @param evt 
+        */
+    private void publicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publicarActionPerformed
+            ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true)
+  .setOAuthAppId("949180598530284")
+  .setOAuthAppSecret("88a4340650a3d5a20a4152a41553f5a4")
+  .setOAuthAccessToken("EAACEdEose0cBAIPHkUuLMsSItkSjgfuI5YzUGRTyeuGjW7jbQAdVeamQfp4mAQsf4LguAzJ9YReWdXlaBJIIHCwtE5PIosTYlWqHWjAZBl1JjQfn2v9pkD1v4CwNAuEiZBndtblrxDC5RnWfQf7zr0bZCM484Hbc7FZB04EnAwZDZD")
+  .setOAuthPermissions("email,publish_stream,...");
+        FacebookFactory ff = new FacebookFactory(cb.build());
+facebook4j.Facebook facebook = ff.getInstance();
+        try {
+            facebook.postLink(new URL(subirimagen.getText()), comentariopublica.getText());
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FacebookException ex) {
+            Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_publicarActionPerformed
 
     
     /**
@@ -188,13 +233,18 @@ facebook4j.Facebook facebook = ff.getInstance();
     private javax.swing.JButton comentar;
     private javax.swing.JTextField comentarimagen;
     private javax.swing.JTextField comentarioimagen;
+    private javax.swing.JTextField comentariopublica;
     private javax.swing.JButton enviar;
     private javax.swing.JTextField imagenLike;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton like;
     private javax.swing.JTextField mensaje;
+    private javax.swing.JButton publicar;
+    private javax.swing.JTextField subirimagen;
     // End of variables declaration//GEN-END:variables
 }
