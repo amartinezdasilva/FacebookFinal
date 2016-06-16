@@ -39,6 +39,11 @@ public class MetodosYMenu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         imagenLike = new javax.swing.JTextField();
         like = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        comentarimagen = new javax.swing.JTextField();
+        comentarioimagen = new javax.swing.JTextField();
+        comentar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -66,6 +71,22 @@ public class MetodosYMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(like, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, -1, -1));
+
+        jLabel3.setText("Comentario");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 90, 20));
+
+        jLabel4.setText("Imagen");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 50, -1));
+        getContentPane().add(comentarimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 110, -1));
+        getContentPane().add(comentarioimagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(339, 170, 100, -1));
+
+        comentar.setText("Comentar");
+        comentar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comentarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(comentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 170, 90, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -107,6 +128,25 @@ FacebookFactory ff = new FacebookFactory(cb.build());
             Logger.getLogger(MetodosYMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_likeActionPerformed
+    /**
+     * Con este metodo puedes dejar un comentario en una imagen de tu muro en facebook
+     * @param evt 
+     */
+    private void comentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comentarActionPerformed
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true)
+  .setOAuthAppId("1538426176461550")
+  .setOAuthAppSecret("ec2983593488cb1c245d11db2275b45d")
+  .setOAuthAccessToken("EAACEdEose0cBAFPxAJoOGhtiV6jwMsNijAooLrlX8PyoU4mTRHvLQ2JzzseJ6KZAHDhTOZCjL7S9NE4yfjhZCRWXdejiuG4ftKcrL5LlrO56TYBfQhiINXLzs02SKb6OQyZCA4MWjlCaUG5jVKVLjxuL72yOn6Dc4RuxXRG4CQZDZD")
+  .setOAuthPermissions("email,publish_stream,...");
+FacebookFactory ff = new FacebookFactory(cb.build());
+facebook4j.Facebook facebook = ff.getInstance();
+        try {
+            facebook.commentPhoto(comentarimagen.getText(),comentarioimagen.getText());
+        } catch (FacebookException ex) {
+            Logger.getLogger(MetodosYMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_comentarActionPerformed
 
     
     /**
@@ -145,10 +185,15 @@ FacebookFactory ff = new FacebookFactory(cb.build());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton comentar;
+    private javax.swing.JTextField comentarimagen;
+    private javax.swing.JTextField comentarioimagen;
     private javax.swing.JButton enviar;
     private javax.swing.JTextField imagenLike;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton like;
     private javax.swing.JTextField mensaje;
     // End of variables declaration//GEN-END:variables
