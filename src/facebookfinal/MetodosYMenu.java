@@ -7,6 +7,8 @@ package facebookfinal;
 
 import facebook4j.FacebookException;
 import facebook4j.FacebookFactory;
+import facebook4j.ResponseList;
+import facebook4j.User;
 import facebook4j.conf.ConfigurationBuilder;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -52,6 +54,9 @@ public class MetodosYMenu extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         comentariopublica = new javax.swing.JTextField();
         publicar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        nombrepersona = new javax.swing.JTextField();
+        buscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,6 +116,18 @@ public class MetodosYMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(publicar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 230, 90, -1));
+
+        jLabel7.setText("Nombre");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 90, 30));
+        getContentPane().add(nombrepersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 110, -1));
+
+        buscar.setText("Buscar personas");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 160, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -192,6 +209,27 @@ facebook4j.Facebook facebook = ff.getInstance();
             Logger.getLogger(JFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_publicarActionPerformed
+        /**
+         * Este metodo de busca mediante el nombre que indiques , todas las personas que hay en facebook con ese nombre
+         * @param evt 
+         */
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true)
+  .setOAuthAppId("949180598530284")
+  .setOAuthAppSecret("88a4340650a3d5a20a4152a41553f5a4")
+  .setOAuthAccessToken("EAACEdEose0cBAKaehh8ZCD4HD4OUoYZAvL1YYsUTfNak7QDmw09uUQMVFp2ooMRZAhxM4nx5k0ynoKrdjwO40509JrcRidAzPBg7zGdJ2gZB8uJE1xRVXAcup79hd0uL33GUmKo2LFo8uKPVzkiJdFEGxOcPIzN4tJlOVbBQUgZDZD")
+  .setOAuthPermissions("email,publish_stream,...");
+        FacebookFactory ff = new FacebookFactory(cb.build());
+facebook4j.Facebook facebook = ff.getInstance();
+        try {
+            ResponseList<User> results = facebook.searchUsers(nombrepersona.getText());
+            for(int i=0;i<results.size();i++)
+                System.out.println(results.get(i));
+        } catch (FacebookException ex) {
+            Logger.getLogger(MetodosYMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_buscarActionPerformed
 
     
     /**
@@ -230,6 +268,7 @@ facebook4j.Facebook facebook = ff.getInstance();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buscar;
     private javax.swing.JButton comentar;
     private javax.swing.JTextField comentarimagen;
     private javax.swing.JTextField comentarioimagen;
@@ -242,8 +281,10 @@ facebook4j.Facebook facebook = ff.getInstance();
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JButton like;
     private javax.swing.JTextField mensaje;
+    private javax.swing.JTextField nombrepersona;
     private javax.swing.JButton publicar;
     private javax.swing.JTextField subirimagen;
     // End of variables declaration//GEN-END:variables
