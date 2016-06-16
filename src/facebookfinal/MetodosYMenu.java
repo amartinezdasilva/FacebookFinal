@@ -5,6 +5,12 @@
  */
 package facebookfinal;
 
+import facebook4j.FacebookException;
+import facebook4j.FacebookFactory;
+import facebook4j.conf.ConfigurationBuilder;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Aaron
@@ -27,21 +33,43 @@ public class MetodosYMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        mensaje = new javax.swing.JTextField();
+        enviar = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setText("Escribir mensaje aqui...");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 26, -1, 84));
+        getContentPane().add(mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 150, -1));
+
+        enviar.setText("ENVIAR");
+        enviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(enviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarActionPerformed
+                ConfigurationBuilder cb = new ConfigurationBuilder();
+cb.setDebugEnabled(true)
+  .setOAuthAppId("1538426176461550")
+  .setOAuthAppSecret("ec2983593488cb1c245d11db2275b45d")
+  .setOAuthAccessToken("EAACEdEose0cBAIGIyZBnPmfkF6ZAIVTk4DE0r1uJBhQnYhBBgMicuKHpJVtYliOzV5Us9hNhd5fENGagOzbP2X1ihtlopMWdO6Qqyb5tD1xMZCzGOZBu8zxzjXQMltMckHE8fghHYfecs6gOFuPkbAYPpmmvfk3GtrcHGiWXNAZDZD")
+  .setOAuthPermissions("email,publish_stream,...");
+FacebookFactory ff = new FacebookFactory(cb.build());
+        facebook4j.Facebook facebook = ff.getInstance();
+        try {
+            facebook.postStatusMessage(mensaje.getText());
+        } catch (FacebookException ex) {
+            Logger.getLogger(MetodosYMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_enviarActionPerformed
 
     
     /**
@@ -80,5 +108,8 @@ public class MetodosYMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton enviar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField mensaje;
     // End of variables declaration//GEN-END:variables
 }
