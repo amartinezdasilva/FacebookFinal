@@ -15,7 +15,8 @@ public class FacebookFinal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       
+       MetodosYMenu obxM = new MetodosYMenu();
+       obxM.setVisible(true);
     }
     
 }

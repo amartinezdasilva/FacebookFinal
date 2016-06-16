@@ -57,12 +57,13 @@ public class MetodosYMenu extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         nombrepersona = new javax.swing.JTextField();
         buscar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Escribir mensaje aqui...");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, 50));
         getContentPane().add(mensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 60, 150, -1));
 
         enviar.setText("ENVIAR");
@@ -128,6 +129,19 @@ public class MetodosYMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, 160, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 440, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -197,7 +211,7 @@ facebook4j.Facebook facebook = ff.getInstance();
         cb.setDebugEnabled(true)
   .setOAuthAppId("949180598530284")
   .setOAuthAppSecret("88a4340650a3d5a20a4152a41553f5a4")
-  .setOAuthAccessToken("EAACEdEose0cBAIPHkUuLMsSItkSjgfuI5YzUGRTyeuGjW7jbQAdVeamQfp4mAQsf4LguAzJ9YReWdXlaBJIIHCwtE5PIosTYlWqHWjAZBl1JjQfn2v9pkD1v4CwNAuEiZBndtblrxDC5RnWfQf7zr0bZCM484Hbc7FZB04EnAwZDZD")
+  .setOAuthAccessToken("EAACEdEose0cBAHEgMaiweA8oRps73J4deLmMiU1YdVAZCP2llDJnYNlFbpQZC0QcKKXehBBK1XVoKV7PwiOwLTuEeAYXv5EY63301meXy1jHKttJu8G56Sq11bJZAprai67ZA2FikQwGdYVqLVRX2VCSnaWZC2IWU5W6pYkyP0AZDZD")
   .setOAuthPermissions("email,publish_stream,...");
         FacebookFactory ff = new FacebookFactory(cb.build());
 facebook4j.Facebook facebook = ff.getInstance();
@@ -210,7 +224,7 @@ facebook4j.Facebook facebook = ff.getInstance();
         }
     }//GEN-LAST:event_publicarActionPerformed
         /**
-         * Este metodo de busca mediante el nombre que indiques , todas las personas que hay en facebook con ese nombre
+         * Este metodo te busca mediante el nombre que indiques , todas las personas que hay en facebook con ese nombre y las saca por pantalla
          * @param evt 
          */
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
@@ -218,7 +232,7 @@ facebook4j.Facebook facebook = ff.getInstance();
         cb.setDebugEnabled(true)
   .setOAuthAppId("949180598530284")
   .setOAuthAppSecret("88a4340650a3d5a20a4152a41553f5a4")
-  .setOAuthAccessToken("EAACEdEose0cBAKaehh8ZCD4HD4OUoYZAvL1YYsUTfNak7QDmw09uUQMVFp2ooMRZAhxM4nx5k0ynoKrdjwO40509JrcRidAzPBg7zGdJ2gZB8uJE1xRVXAcup79hd0uL33GUmKo2LFo8uKPVzkiJdFEGxOcPIzN4tJlOVbBQUgZDZD")
+  .setOAuthAccessToken("EAACEdEose0cBAHEgMaiweA8oRps73J4deLmMiU1YdVAZCP2llDJnYNlFbpQZC0QcKKXehBBK1XVoKV7PwiOwLTuEeAYXv5EY63301meXy1jHKttJu8G56Sq11bJZAprai67ZA2FikQwGdYVqLVRX2VCSnaWZC2IWU5W6pYkyP0AZDZD")
   .setOAuthPermissions("email,publish_stream,...");
         FacebookFactory ff = new FacebookFactory(cb.build());
 facebook4j.Facebook facebook = ff.getInstance();
@@ -282,6 +296,7 @@ facebook4j.Facebook facebook = ff.getInstance();
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton like;
     private javax.swing.JTextField mensaje;
     private javax.swing.JTextField nombrepersona;
